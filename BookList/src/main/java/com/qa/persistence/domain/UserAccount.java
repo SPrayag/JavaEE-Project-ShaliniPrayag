@@ -1,5 +1,6 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,10 +12,15 @@ public class UserAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 50)
 	private String firstName;
+	@Column(length = 50)
 	private String lastName;
+	@Column(length = 50)
 	private String username;
+	@Column(length = 50)
 	private String password;
+	@Column(length = 50)
 	private String email;
 
 	public UserAccount(Integer id, String firstName, String lastName, String username, String password, String email) {
