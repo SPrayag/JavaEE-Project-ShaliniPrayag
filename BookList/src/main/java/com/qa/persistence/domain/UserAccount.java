@@ -11,7 +11,7 @@ public class UserAccount {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer accountId;
 	@Column(length = 50)
 	private String firstName;
 	@Column(length = 50)
@@ -21,11 +21,11 @@ public class UserAccount {
 	@Column(length = 50)
 	private String password;
 	@Column(length = 50)
-	private String email;
+	private String email; 
 
-	public UserAccount(Integer id, String firstName, String lastName, String username, String password, String email) {
+	public UserAccount(Integer accountId, String firstName, String lastName, String username, String password, String email) {
 		super();
-		this.id = id;
+		this.accountId = accountId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -37,12 +37,12 @@ public class UserAccount {
 		super();
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getAccountId() {
+		return accountId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer accountId) {
+		this.accountId = accountId;
 	}
 
 	public String getFirstName() {

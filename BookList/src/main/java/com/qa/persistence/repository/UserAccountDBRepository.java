@@ -51,9 +51,9 @@ public class UserAccountDBRepository implements UserAccountRepository {
 		if (existing == null) {
 			throw new AccountNotFoundException();
 		}
-		existing.setId(newAccount.getId());
+		existing.setId(newAccount.getAccountId());
 		existing.setFirstName(newAccount.getFirstName());
-		existing.setLastName(newAccount.getLastName());
+		existing.setLastName(newAccount.getLastName()); 
 		existing.setUsername(newAccount.getUsername());
 		existing.setPassword(newAccount.getPassword());
 		existing.setEmail(newAccount.getEmail());
