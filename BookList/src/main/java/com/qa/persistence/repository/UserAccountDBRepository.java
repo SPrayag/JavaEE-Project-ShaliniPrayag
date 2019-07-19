@@ -5,8 +5,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.security.auth.login.AccountNotFoundException;
-//import com.qa.exceptions.AccountNotFoundException;
+import com.qa.exceptions.AccountNotFoundException;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -16,16 +15,16 @@ import com.qa.util.JSONUtil;
 @Transactional(value = TxType.SUPPORTS)
 @Default
 public class UserAccountDBRepository implements UserAccountRepository {
-	
+
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
-	
-	@Inject
+
+	@Inject 
 	private JSONUtil json;
-	
+
 	@Override
 	public String getAllAccounts() {
-		TypedQuery<UserAccount> query = this.em.createQuery("SELECT a from Account a", UserAccount.class);
+		TypedQuery<UserAccount> query = this.em.createQuery("SELECT a from UserAccount a", UserAccount.class);
 		return this.json.getJSONForObject(query.getResultList());
 	}
 
@@ -41,33 +40,24 @@ public class UserAccountDBRepository implements UserAccountRepository {
 	@Transactional(value = TxType.REQUIRED)
 	public String deleteAccount(int accountId) throws AccountNotFoundException {
 		this.em.remove(this.em.find(UserAccount.class, accountId));
-		return SUCCESS; 
+		return SUCCESS;
 	}
-	
+
 	@Override
-	@Transactional(value = TxType.REQUIRED) 
+	@Transactional(value = TxType.REQUIRED)
 	public String updateAccount(int accountId, String account) throws AccountNotFoundException {
 		UserAccount newAccount = this.json.getObjectForJSON(account, UserAccount.class);
 		UserAccount existing = this.em.find(UserAccount.class, accountId);
 		if (existing == null) {
 			throw new AccountNotFoundException();
 		}
-		existing.setId(newAccount.getId());
-		existing.setFirstName(newAccount.getFirstName());		
+		existing.setId(newAccount.getAccountId());
+		existing.setFirstName(newAccount.getFirstName());
 		existing.setLastName(newAccount.getLastName());
 		existing.setUsername(newAccount.getUsername());
 		existing.setPassword(newAccount.getPassword());
 		existing.setEmail(newAccount.getEmail());
 		this.em.persist(existing);
-		return SUCCESS;    
-	} 
-
-	
-	/*@Override
-	public List<UserAccount> findAccountsByFirstName(String firstName) {
-		TypedQuery<UserAccount> query = this.em.createQuery("SELECT a FROM Account a WHERE a.firstName = :firstName", UserAccount.class);
-		query.setParameter("firstName", firstName);
-		return query.getResultList();    
-	}*/
-
+		return SUCCESS; 
+	}
 }

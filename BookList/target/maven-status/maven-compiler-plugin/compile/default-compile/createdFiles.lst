@@ -1,0 +1,11 @@
+com\qa\service\UserAccountService.class
+com\qa\exceptions\AccountNotFoundException.class
+com\qa\persistence\domain\Book.class
+com\qa\persistence\repository\BookRepository.class
+com\qa\persistence\repository\UserAccountDBRepository.class
+com\qa\rest\UserAccountController.class
+com\qa\persistence\domain\UserAccount.class
+com\qa\service\UserAccountServiceImpl.class
+com\qa\util\JSONUtil.class
+com\qa\persistence\repository\UserAccountRepository.class
+com\qa\rest\JAXActivator.class

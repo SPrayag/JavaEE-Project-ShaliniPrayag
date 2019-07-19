@@ -12,7 +12,7 @@ import com.qa.service.UserAccountService;
 @Path("/account")
 public class UserAccountController {
 
-	@Inject  
+	@Inject
 	private UserAccountService service;
 
 	@GET

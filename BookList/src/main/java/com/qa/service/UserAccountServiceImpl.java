@@ -7,17 +7,17 @@ import com.qa.persistence.repository.UserAccountRepository;
 
 public class UserAccountServiceImpl implements UserAccountService {
 
-	@Inject  
+	@Inject
 	private UserAccountRepository repo;
 
 	@Override
 	public String getAllAccounts() {
 		return this.repo.getAllAccounts();
-	} 
+	}
 
 	@Override
 	public String createAccount(String account) {
-		return this.repo.createAccount(account); 
+		return this.repo.createAccount(account);
 	}
 
 	@Override
@@ -28,11 +28,5 @@ public class UserAccountServiceImpl implements UserAccountService {
 	@Override
 	public String updateAccount(int accountId, String account) throws AccountNotFoundException {
 		return this.repo.updateAccount(accountId, account);
-	} 
-
-	/*
-	 * @Override public List<UserAccount> findAccountsByFirstName(String firstName)
-	 * { return this.repo.findAccountsByFirstName(firstName); }
-	 */
-
+	}
 }
